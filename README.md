@@ -32,20 +32,19 @@ cd docker-on-ecs
 
 ```
 # Run on local
-docker build -t books-api ./app/
-docker run -it -p 4567:4567 --rm books-api:latest
-open http://localhost:4567/
-open http://localhost:4567/stat
-open http://localhost:4567/api/books
+docker build -t nginx ./app/
+docker run -it -p 80:80 --rm nginx:latest
+open http://localhost:80/
+
 ```
 
 ### Push Docker Image to ECR
 
 ```
-aws ecr create-repository --repository-name books-api
+aws ecr create-repository --repository-name nginx
 aws ecr get-login --no-include-email | sh
-IMAGE_REPO=$(aws ecr describe-repositories --repository-names books-api --query 'repositories[0].repositoryUri' --output text)
-docker tag books-api:latest $IMAGE_REPO:v1
+IMAGE_REPO=$(aws ecr describe-repositories --repository-names nginx --query 'repositories[0].repositoryUri' --output text)
+docker tag nginx:latest $IMAGE_REPO:v1
 docker push $IMAGE_REPO:v1
 ```
 
