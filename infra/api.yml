@@ -15,11 +15,11 @@ Resources:
       ExecutionRoleArn: !ImportValue ECSTaskExecutionRole
       ContainerDefinitions:
         - Name: booksapi
-          Image: 532497595666.dkr.ecr.us-west-2.amazonaws.com/books-api:v1
+          Image: 294801687251.dkr.ecr.us-east-2.amazonaws.com/nginx:v1
           Cpu: 256
           Memory: 512
           PortMappings:
-            - ContainerPort: 4567
+            - ContainerPort: 80
               Protocol: tcp
           LogConfiguration:
             LogDriver: awslogs
@@ -50,7 +50,7 @@ Resources:
             - !ImportValue ContainerSecurityGroup
       LoadBalancers:
         - ContainerName: booksapi
-          ContainerPort: 4567
+          ContainerPort: 80
           TargetGroupArn: !Ref TargetGroup
 
   TargetGroup:
