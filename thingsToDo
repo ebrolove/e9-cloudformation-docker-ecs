@@ -1,0 +1,3 @@
+Next stepd:
+1- when building the nginx image, copy a new message than the default message for nginx
+then use the file upload app to host it on nginx and demo that apps can be deployed like that
