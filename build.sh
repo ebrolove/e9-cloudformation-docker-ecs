@@ -1,3 +1,5 @@
+
+
 aws ecr get-login --no-include-email | sh
 
 if [ $? -ne 0 ]; then
